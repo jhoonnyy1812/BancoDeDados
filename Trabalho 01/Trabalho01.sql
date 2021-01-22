@@ -27,7 +27,8 @@ CREATE TABLE IF NOT EXISTS eempresa.dunidade(
 CREATE TABLE IF NOT EXISTS eempresa.projeto(
   PNOME VARCHAR(20) UNIQUE NOT NULL,
   PCODIGO VARCHAR(3) PRIMARY KEY,
-  CIDADE VARCHAR(20) REFERENCES eempresa.dunidade(DCIDADE)
+  CIDADE VARCHAR(20) REFERENCES eempresa.dunidade(DCIDADE),
+  CDEP SMALLINT REFERENCES eempresa.departamento(CODIGO)
 );
 
 CREATE TABLE IF NOT EXISTS eempresa.tarefa(
@@ -38,6 +39,9 @@ CREATE TABLE IF NOT EXISTS eempresa.tarefa(
 
 ALTER TABLE eempresa.empregado
 ADD CDEP SMALLINT REFERENCES eempresa.departamento(CODIGO);
+
+ALTER TABLE eempresa.empregado
+ADD CONSTRAINT CHECK_MIN_SALARY CHECK (SALARIO >= 1100.00);
 
 --Adicionando os chefes dos departamentos:
 INSERT INTO eempresa.departamento(DNOME, CODIGO, GERENTE)
@@ -100,3 +104,59 @@ VALUES (3, 'Icapuí');
 
 INSERT INTO eempresa.dunidade(DCODIGO, DCIDADE)
 VALUES (4, 'Fortaleza');
+
+--Adicionando projetos":
+INSERT INTO eempresa.projeto(PNOME, PCODIGO, CIDADE, CDEP)
+VALUES('ProdutoA', 'PA', 'Cumbuco', 3);
+
+INSERT INTO eempresa.projeto(PNOME, PCODIGO, CIDADE, CDEP)
+VALUES('ProdutoB', 'PB', 'Icapuí', 3);
+
+INSERT INTO eempresa.projeto(PNOME, PCODIGO, CIDADE, CDEP)
+VALUES('Informatização', 'Inf', 'Fortaleza', 4);
+
+INSERT INTO eempresa.projeto(PNOME, PCODIGO, CIDADE, CDEP)
+VALUES('Divulgação', 'Div', 'Morro Branco', 2);
+
+
+--Adicionando tarefas:
+INSERT INTO eempresa.tarefa(CPF, PCODIGO, HORAS)
+VALUES('1234', 'PA', 30.0);
+
+INSERT INTO eempresa.tarefa(CPF, PCODIGO, HORAS)
+VALUES('1234', 'PB', 10.0);
+
+INSERT INTO eempresa.tarefa(CPF, PCODIGO, HORAS)
+VALUES('4321', 'PA', 5.0);
+
+INSERT INTO eempresa.tarefa(CPF, PCODIGO, HORAS)
+VALUES('4321', 'Div', 35.0);
+
+INSERT INTO eempresa.tarefa(CPF, PCODIGO, HORAS)
+VALUES('5678', 'Div', 40.0);
+
+INSERT INTO eempresa.tarefa(CPF, PCODIGO, HORAS)
+VALUES('8765', 'Inf', 32.0);
+
+INSERT INTO eempresa.tarefa(CPF, PCODIGO, HORAS)
+VALUES('8765', 'Div', 8.0);
+
+INSERT INTO eempresa.tarefa(CPF, PCODIGO, HORAS)
+VALUES('3456', 'PA', 10.0);
+
+INSERT INTO eempresa.tarefa(CPF, PCODIGO, HORAS)
+VALUES('3456', 'PB', 25.0);
+
+INSERT INTO eempresa.tarefa(CPF, PCODIGO, HORAS)
+VALUES('3456', 'Div', 5.0);
+
+INSERT INTO eempresa.tarefa(CPF, PCODIGO, HORAS)
+VALUES('6543', 'PB', 40.0);
+
+SELECT DATA_TYPE
+
+FROM INFORMATION_SCHEMA.COLUMNS
+
+WHERE
+
+     TABLE_NAME = 'empregado'

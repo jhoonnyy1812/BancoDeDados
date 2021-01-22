@@ -24,3 +24,5 @@ https://www.postgresqltutorial.com/postgresql-create-schema/
 
 https://www.postgresqltutorial.com/postgresql-create-table/https://www.devmedia.com.br/criando-bancos-de-dados-no-postgresql-por-dentro/6447#:~:text=Uma%20outra%20forma%20para%20a,campos%20do%20form%20e%20pronto.
 
+https://bigdata-etl.com/sql-server-how-to-check-column-data-types-in-sql-server-database/
+

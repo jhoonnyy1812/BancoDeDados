@@ -80,6 +80,9 @@ INSERT INTO eempresa.empregado(ENOME, CPF, ENDERECO, NASC, SEXO, SALARIO, CHEFE,
 VALUES ('Helenita', '4321', 'rua 2, 2', '02/02/62', 'F', 12000.00, 6543, 2);
 
 INSERT INTO eempresa.empregado(ENOME, CPF, ENDERECO, NASC, SEXO, SALARIO, CHEFE, CDEP)
+VALUES ('Teste', '1577', 'rua 0, 0', '01/02/22', 'F', 12000.00, 6543, 2);
+
+INSERT INTO eempresa.empregado(ENOME, CPF, ENDERECO, NASC, SEXO, SALARIO, CHEFE, CDEP)
 VALUES ('Pedrin', '5678', 'rua 3, 3', '04/04/64', 'M', 9000.00, 6543, 2);
 
 INSERT INTO eempresa.empregado(ENOME, CPF, ENDERECO, NASC, SEXO, SALARIO, CHEFE, CDEP)

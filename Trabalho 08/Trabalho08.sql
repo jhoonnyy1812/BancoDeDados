@@ -1,3 +1,5 @@
+--CMD: createdb -U postgres questao08fbd "Banco usado na disciplina de FBD." 
+--CMD: psql -U postgres questao08fbd
 CREATE TABLE IF NOT EXISTS estudante(
   enum INT PRIMARY KEY,
   enome TEXT NOT NULL,
@@ -68,3 +70,41 @@ WHERE b.fnome = 'FAFOR' AND c.enum NOT IN(
   ON a.fid = b.fid
   WHERE b.fnome = 'FANÓIS'
 );
+
+--Questão 01: D
+SELECT COUNT(*) FROM disciplina AS a
+INNER JOIN faculdade AS b
+ON a.fid = b.fid
+WHERE b.fnome = 'FAFOR';
+
+--Questão 01: E
+SELECT DISTINCT a.enome FROM estudante AS a
+INNER JOIN matricula AS b
+ON b.enum = a.enum
+INNER JOIN disciplina AS c
+ON c.dnome = b.dnome
+INNER JOIN faculdade AS d
+ON d.fid = c.fid
+WHERE d.fnome = 'FAFOR' AND a.idade > 20;
+
+--Questão 01: F
+SELECT a.enum, a.enome FROM estudante AS a
+WHERE a.idade < 19;
+
+--Questão 01: J
+SELECT a.fnome, COUNT(b.dnome)
+FROM faculdade AS a, disciplina AS b
+WHERE b.dnome NOT IN (
+  SELECT DISTINCT c.dnome FROM matricula AS c
+)
+GROUP BY a.fnome;
+
+--Questão 01: K
+SELECT a.enome, d.fnome, COUNT(DISTINCT c.dnome) FROM estudante AS a
+INNER JOIN matricula AS b
+ON b.enum = a.enum
+INNER JOIN disciplina AS c
+ON c.dnome = b.dnome
+INNER JOIN faculdade AS d
+ON d.fid = c.fid
+GROUP BY a.enome, d.fnome;
